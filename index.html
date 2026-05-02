@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEAM STARBLACK TV</title>
+    
+    <!-- Video.js CSS -->
+    <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- PANTALLA DE LOGIN -->
+    <div id="login-screen">
+        <div class="login-card">
+            <img src="https://i.postimg.cc/90vxtsjD/tv.jpg" class="app-logo" alt="Logo">
+            <p>Tu Tv Online a otro nivel</p>
+            
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Usuario" autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Contraseña" onkeypress="if(event.key==='Enter') login()">
+            </div>
+            
+            <div id="login-error" class="login-error"></div>
+            
+            <button class="btn-login" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i>
+                INICIAR SESIÓN
+            </button>
+            
+            <div class="login-footer">
+                <p>© 2026 Team Starblack Tv. Todos los derechos reservados.</p>
+                <p>By @hacker056</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- APLICACIÓN PRINCIPAL -->
+    <div class="app-container" style="display: none;" id="app-container">
+        <!-- HEADER -->
+        <header class="main-header">
+            <div class="header-left">
+                <button class="menu-btn" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo" onclick="mostrarCategoria('ENTRETENIMIENTO')">
+                    <img src="https://i.postimg.cc/90vxtsjD/tv.jpg" alt="Logo">
+                    <span>TEAM STARBLACK<small>TV</small></span>
+                </div>
+            </div>
+
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="buscador-header" placeholder="Buscar canales...">
+                    <div id="search-suggestions" class="search-suggestions"></div>
+                </div>
+                <button class="search-btn" onclick="buscarCanales()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+
+            <div class="header-right">
+                <button class="header-icon" onclick="window.location.reload()">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+                <button class="header-icon" onclick="mostrarCategoria('ENTRETENIMIENTO')">
+                    <i class="fas fa-home"></i>
+                </button>
+                <div class="user-avatar" id="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- OVERLAY -->
+            <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">CATEGORÍAS</div>
+                    <div id="categorias"></div>
+                </div>
+            </aside>
+
+            <!-- ÁREA DE CONTENIDO -->
+            <div class="content-area">
+                <!-- REPRODUCTOR -->
+                <div class="video-player-section">
+                    <div class="video-container">
+                        <video id="video-hls" class="video-js vjs-big-play-centered" controls preload="auto"></video>
+                    </div>
+
+                    <div class="video-info">
+                        <div class="video-title">
+                            <i class="fas fa-tv"></i>
+                            <span id="current-channel">Selecciona un canal</span>
+                        </div>
+                        <div class="video-meta">
+                            <span><i class="fas fa-eye"></i> <span id="viewer-count">0</span> viendo</span>
+                            <span><i class="fas fa-calendar"></i> <span id="current-date"></span></span>
+                            <span><i class="fas fa-signal"></i> EN VIVO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SECCIÓN DE CANALES -->
+                <div class="channels-section">
+                    <div class="section-header">
+                        <h2>
+                            <i class="fas fa-list"></i>
+                            <span id="categoria-titulo">ENTRETENIMIENTO</span>
+                        </h2>
+                    </div>
+
+                    <div id="lista" class="channels-grid grid-view"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video.js JS -->
+    <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
